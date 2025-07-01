@@ -11,5 +11,5 @@ import org.mapstruct.ReportingPolicy;
 public interface Sous_CompetenceMapper {
 
     Sous_CompetenceDto souscompeteneToDto(Sous_Competence sousCompetence);
-    Sous_CompetenceDto dtoToCompetence(Sous_CompetenceDto sousCompetenceDto);
+    Sous_Competence dtoToSousCompetence(Sous_CompetenceDto sousCompetenceDto);
 }

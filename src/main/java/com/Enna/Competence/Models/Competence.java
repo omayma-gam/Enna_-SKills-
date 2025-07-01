@@ -3,6 +3,8 @@ package com.Enna.Competence.Models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Competence {
     @Id
@@ -11,6 +13,10 @@ public class Competence {
     private Long id;
     private String nom;
     private String description;
+
+    @OneToMany(mappedBy = "competence")
+    private List<Sous_Competence> sousCompetences;
+
 
 
     public Long getId() {
@@ -35,5 +41,13 @@ public class Competence {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Sous_Competence> getSousCompetences() {
+        return sousCompetences;
+    }
+
+    public void setSousCompetences(List<Sous_Competence> sousCompetences) {
+        this.sousCompetences = sousCompetences;
     }
 }
