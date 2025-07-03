@@ -26,6 +26,7 @@ public class CompetenceDto implements Serializable {
         return nom;
     }
 
+
     public void setNom(String nom) {
         this.nom = nom;
     }
