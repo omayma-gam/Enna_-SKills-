@@ -28,7 +28,7 @@ public class CompetenceController {
         return competenceService.ListCompetence();
     }
 
-    @PutMapping("/updat{id}")
+    @PutMapping("/updat/{id}")
     public CompetenceDto updatCompetence(@PathVariable Long id , @RequestBody CompetenceDto competenceDto){
         return competenceService.modifierCompetence(id,competenceDto);
     }

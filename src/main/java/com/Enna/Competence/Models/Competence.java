@@ -13,6 +13,8 @@ public class Competence {
     private Long id;
     private String nom;
     private String description;
+    private boolean etatValidation;
+
 
     @OneToMany(mappedBy = "competence")
     private List<Sous_Competence> sousCompetences;
@@ -49,5 +51,13 @@ public class Competence {
 
     public void setSousCompetences(List<Sous_Competence> sousCompetences) {
         this.sousCompetences = sousCompetences;
+    }
+
+    public boolean isEtatValidation() {
+        return etatValidation;
+    }
+
+    public void setEtatValidation(boolean etatValidation) {
+        this.etatValidation = etatValidation;
     }
 }

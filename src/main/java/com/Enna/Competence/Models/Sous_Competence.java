@@ -14,7 +14,8 @@ public class Sous_Competence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Génération auto de l'ID
     private Long id;
     private String nom;
-    private String description;m
+    private String description;
+    private  boolean etatValidation;
 
     @ManyToOne
     @JoinColumn(name = "competence_id")
@@ -52,5 +53,13 @@ public class Sous_Competence {
 
     public void setCompetence(Competence competence) {
         this.competence = competence;
+    }
+
+    public boolean isEtatValidation() {
+        return etatValidation;
+    }
+
+    public void setEtatValidation(boolean etatValidation) {
+        this.etatValidation = etatValidation;
     }
 }
