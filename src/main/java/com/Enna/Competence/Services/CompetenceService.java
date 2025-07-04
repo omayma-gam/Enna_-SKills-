@@ -35,12 +35,9 @@ public class CompetenceService {
         return competenceMapper.competenceToDto(competence1);
     }
 
-    public List<CompetenceDto> ListCompetence(){
-        return competenceRepo.findAll().stream()
-                .map(competenceMapper::competenceToDto)
-                .collect(Collectors.toList());
+    public List<Competence> ListCompetence() {
+        return competenceRepo.findAll();
     }
-
     public CompetenceDto modifierCompetence(Long id ,CompetenceDto competenceDto){
         Competence competence=competenceRepo.findById(id).orElse(null);
         if (competence==null){

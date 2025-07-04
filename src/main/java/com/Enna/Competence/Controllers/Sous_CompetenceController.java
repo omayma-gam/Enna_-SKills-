@@ -48,5 +48,6 @@ public class Sous_CompetenceController {
         return ResponseEntity.ok(updatedDto);
     }
 
+
 }
 

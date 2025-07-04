@@ -1,6 +1,7 @@
 package com.Enna.Competence.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class Competence {
     private String description;
     private boolean etatValidation;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "competence")
     private List<Sous_Competence> sousCompetences;
 

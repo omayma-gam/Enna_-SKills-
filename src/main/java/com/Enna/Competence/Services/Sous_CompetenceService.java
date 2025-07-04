@@ -30,7 +30,6 @@ public class Sous_CompetenceService {
         this.competenceRepo = competenceRepo;
         this.competenceService = competenceService;
     }
-
     public Sous_CompetenceDto AjouterSousCompetence(Sous_CompetenceDto sousCompetenceDto) {
         Sous_Competence sousCompetence = sousCompetenceMapper.dtoToSousCompetence(sousCompetenceDto);
         if (sousCompetenceDto.getCompetenceId()!=null){
@@ -39,15 +38,12 @@ public class Sous_CompetenceService {
             sousCompetence.setCompetence(competence);
         }
         return sousCompetenceMapper.souscompeteneToDto(sousCompetenceRepo.save(sousCompetence));
-
     }
-
     public List<Sous_CompetenceDto> ListSousCompetence(){
       return sousCompetenceRepo.findAll().stream()
                 .map(sousCompetenceMapper::souscompeteneToDto)
                 .collect(Collectors.toList());
     }
-
     public Sous_CompetenceDto modifier(Long id , Sous_CompetenceDto sous_competenceDto){
         Sous_Competence sousCompetence= sousCompetenceRepo.findById(id)
                 .orElse(null);
@@ -56,7 +52,6 @@ public class Sous_CompetenceService {
         }
         sousCompetence.setNom(sous_competenceDto.getNom());
         sousCompetence.setDescription(sous_competenceDto.getDescription());
-
         return sousCompetenceMapper.souscompeteneToDto(sousCompetence);
     }
 
@@ -67,14 +62,11 @@ public class Sous_CompetenceService {
     public Sous_CompetenceDto updateEtatValidation(Long id, boolean etatValidation) {
         Sous_Competence sousCompetence = sousCompetenceRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Sous-compétence non trouvée avec id: " + id));
-
         sousCompetence.setEtatValidation(etatValidation);
         Sous_Competence updated = sousCompetenceRepo.save(sousCompetence);
-
         if (updated.getCompetence() != null && updated.getCompetence().getId() != null) {
             updateCompetenceValidation(updated.getCompetence().getId());
         }
-
         return sousCompetenceMapper.souscompeteneToDto(updated);
     }
 
@@ -87,13 +79,7 @@ public class Sous_CompetenceService {
         long validatedSousCompetences = competence.getSousCompetences().stream()
                 .filter(Sous_Competence::isEtatValidation)
                 .count();
-
-//         Règle : la compétence est acquise si toutes les sous-compétences sont validées
         boolean isCompetenceValidated = totalSousCompetences > 0 && validatedSousCompetences == totalSousCompetences;
-        // Alternative : compétence acquise si au moins 75 % des sous-compétences sont validées
-//         boolean isCompetenceValidated = totalSousCompetences > 0 &&
-//                ((double) validatedSousCompetences / totalSousCompetences) >= 0.75;
-
         competence.setEtatValidation(isCompetenceValidated);
         competenceRepo.save(competence);
     }

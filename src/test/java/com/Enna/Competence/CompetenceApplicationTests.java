@@ -65,9 +65,8 @@ class CompetenceApplicationTests {
 	@Test
 	void testListCompetence() {
 		when(competenceRepo.findAll()).thenReturn(List.of(competence));
-		when(competenceMapper.competenceToDto(competence)).thenReturn(competenceDto);
 
-		List<CompetenceDto> result = competenceService.ListCompetence();
+		List<Competence> result = competenceService.ListCompetence();
 
 		assertEquals(1, result.size());
 		assertEquals("Java", result.get(0).getNom());
